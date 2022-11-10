@@ -1,2 +1,5 @@
 # react-learn
-some projects to learn react ant its features
+
+## List of projects through which I learned react language and it's features:
+
+- expenses-tracker
