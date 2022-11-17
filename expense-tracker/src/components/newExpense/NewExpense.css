@@ -1,0 +1,53 @@
+.new-expense {
+  width: 50rem;
+  max-width: 95%;
+
+  padding: 1rem;
+  margin: 2rem auto;
+
+  text-align: center;
+
+  color: #e9e8e8;
+  background-color: #79005a;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+
+  border-radius: 12px;
+}
+
+.new-expense button {
+  padding: 1rem 2rem;
+  margin-right: 1rem;
+
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: bolder;
+
+  letter-spacing: .5px;
+
+  cursor: pointer;
+
+  color: #271f1f;
+  background-color: #d1a103;
+  
+  border: 2px solid #1f1f1f;
+  border-radius: 10px;
+
+  transition: all .2s;
+}
+
+.new-expense button:hover,
+.new-expense button:active {
+  background-color: #f5a001;
+  border-color: #1f1f1f;
+}
+
+.new-expense button.alternative {
+  color: #220131;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.new-expense button.alternative:hover,
+.new-expense button.alternative:active {
+  background-color: #ddb3f8;
+}
