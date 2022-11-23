@@ -6,6 +6,8 @@
   justify-content: space-between;
   align-items: center;
 
+  position: relative;
+
   background-color: #464545;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 
@@ -47,13 +49,96 @@
   border-radius: 12px;
 }
 
-.expense-item__price_currency{
+.expense-item__price_currency {
   margin-left: 2px;
 
   font-size: 1.5rem;
   font-weight: 500;
 
   line-height: 1.5rem;
+}
+
+/* delete axe styles */
+
+.expense-item__delete_wrapper {
+  padding: 3px 10px;
+
+  position: absolute;
+  top: 2px;
+  right: 3px;
+
+  display: flex;
+
+  list-style: none;
+}
+
+.expense-item__delete_wrapper:hover {
+  cursor: pointer;
+}
+
+.expense-item__delete_wrapper:hover>.expense-item__delete_item {
+  background-color: #ff0095;
+}
+
+.expense-item__delete_item {
+  width: 2px;
+  height: 20px;
+
+  background-color: #000;
+
+  pointer-events: none;
+  transition: all .2s;
+}
+
+.expense-item__delete_item:nth-of-type(1) {
+  transform: rotate(45deg) translateX(1px);
+}
+
+.expense-item__delete_item:nth-of-type(2) {
+  transform: rotate(-45deg) translateX(-1px);
+}
+
+/* delete confirmation styles */
+
+.expense-item__delete_confirm-wrapper {
+  position: absolute;
+  top: 5px;
+  right: 40px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.expense-item__delete_button {
+  padding: 3px 10px;
+
+  border-radius: 8px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  
+  transition: all .2s;
+}
+
+.expense-item__delete_button:hover {
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.expense-item__delete_button--cancel {
+  color: rgba(233, 232, 232, 1);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.expense-item__delete_button--confirm {
+  color: rgba(0, 0, 0, 1);
+  background-color: rgba(255, 0, 149, 0.6);
+}
+
+.expense-item__delete_button--cancel:hover {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.expense-item__delete_button--confirm:hover {
+  background-color: rgba(255, 0, 149, 0.9);
 }
 
 @media (min-width: 600px) {

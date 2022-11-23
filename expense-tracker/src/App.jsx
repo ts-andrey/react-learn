@@ -20,7 +20,7 @@ const INIT_EXPENSES = [
     id: 'e4',
     title: 'New Desk (Wooden)',
     amount: 450,
-    date: new Date(2022, 10, 12),
+    date: new Date(2021, 10, 12),
   },
 ];
 
@@ -32,10 +32,14 @@ function App() {
     console.log(newExpense);
   };
 
+  const deleteExpenseHandler = expenseID => {
+    setExpenses(prevState => prevState.filter(el => el.id !== expenseID));
+  };
+
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <ExpenseList expenses={expenses} />
+      <ExpenseList expenses={expenses} onDeleteHandler={deleteExpenseHandler} />
     </div>
   );
 }
