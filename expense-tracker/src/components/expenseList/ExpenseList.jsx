@@ -2,13 +2,13 @@ import './ExpenseList.css';
 import ExpenseItem from '../expenseItem/ExpenseItem';
 import ExpenseFilter from '../expenseFilter/ExpenseFilter';
 import { useState } from 'react';
+import ExpenseChart from '../expenseChart/ExpenseChart';
 
 function ExpenseList(props) {
   const [filterYear, setFilterYear] = useState('2022');
 
   const filterChangeHandler = newFilterYear => {
     setFilterYear(newFilterYear);
-    console.log(filterYear);
   };
 
   const filterExpenses = props.expenses.filter(expense => expense.date.getFullYear().toString() === filterYear);
@@ -24,6 +24,7 @@ function ExpenseList(props) {
   return (
     <div className='expense-list__wrapper'>
       <ExpenseFilter selected={filterYear} onChangeFilter={filterChangeHandler} />
+      <ExpenseChart expenses={filterExpenses} />
       <ul className='expense-list'>{expensesContent}</ul>
     </div>
   );
