@@ -1,8 +1,9 @@
 import classes from './AddUser.module.css';
 
+import { Fragment, useState } from 'react';
+
 import Card from '../../UI/Card/Card';
 import Button from '../../UI/Button/Button';
-import { useState } from 'react';
 import ErrorModal from '../../UI/ErrorModal/ErrorModal';
 
 const AddUser = props => {
@@ -44,7 +45,7 @@ const AddUser = props => {
   }
 
   return (
-    <div>
+    <Fragment>
       {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
@@ -55,7 +56,7 @@ const AddUser = props => {
           <Button type="submit">Create User</Button>
         </form>
       </Card>
-    </div>
+    </Fragment>
   )
 }
 
