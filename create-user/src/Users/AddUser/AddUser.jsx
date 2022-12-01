@@ -32,6 +32,8 @@ const AddUser = props => {
       return;
     }
     props.onAddUser(enteredName, enteredAge);
+    
+    // Bad practice to manipulate DOM directly, better do that with React!!
     nameInputRef.current.value = '';
     ageInputRef.current.value = '';
   }
