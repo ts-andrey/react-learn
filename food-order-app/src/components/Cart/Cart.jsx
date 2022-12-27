@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { Fragment, useContext, useState } from 'react';
 
 import classes from './Cart.module.css';
 
@@ -11,6 +11,8 @@ const DATABASE_URL = 'https://react-food-order-d2497-default-rtdb.europe-west1.f
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
 
   const cartCtx = useContext(CartContext);
 
@@ -29,14 +31,21 @@ const Cart = (props) => {
     setIsCheckout(true);
   }
 
-  const submitOrderHandler = userData => {
-    fetch(DATABASE_URL, {
+  const submitOrderHandler = async (userData) => {
+    setIsSubmitting(true);
+
+    await fetch(DATABASE_URL, {
       method: 'POST',
       body: JSON.stringify({
         user: userData,
         orderedItems: cartCtx.items
       })
-    })
+    });
+
+    setIsSubmitting(false);
+    setDidSubmit(true);
+
+    cartCtx.clearCart();
   }
 
   const cartItems = cartCtx.items.map(item => (
@@ -65,8 +74,8 @@ const Cart = (props) => {
     </div>
   )
 
-  return (
-    <Modal onCloseCart={props.onClose}>
+  const cartModalContent = (
+    <Fragment>
       <ul className={classes['cart-items']}>
         {cartItems}
       </ul>
@@ -76,6 +85,32 @@ const Cart = (props) => {
       </div>
       {isCheckout && <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />}
       {!isCheckout && modalActions}
+    </Fragment>
+  )
+
+  const isSumbittingModalContent = (
+    <p>Sending order data...</p>
+  )
+
+  const didSubmitModalContent = (
+    <Fragment>
+      <p>Successfully sent the order!</p>
+      <div className={classes.actions}>
+        <button
+          className={classes.button}
+          onClick={props.onClose}
+        >
+          Close
+        </button>
+      </div>
+    </Fragment>
+  )
+
+  return (
+    <Modal onCloseCart={props.onClose}>
+      {!isSubmitting && !didSubmit && cartModalContent}
+      {isSubmitting && isSumbittingModalContent}
+      {!isSubmitting && didSubmit && didSubmitModalContent}
     </Modal>
   )
 }
