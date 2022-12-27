@@ -1,10 +1,13 @@
-import { useState } from 'react';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+
+import classes from './Cart.module.css';
+
 import CartContext from '../../store/cart-context';
 import Modal from '../UI/Modal';
-import classes from './Cart.module.css';
 import CartItem from './CartItem';
 import Checkout from './Checkout';
+
+const DATABASE_URL = 'https://react-food-order-d2497-default-rtdb.europe-west1.firebasedatabase.app/orders.json';
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
@@ -24,6 +27,16 @@ const Cart = (props) => {
 
   const orderHandler = () => {
     setIsCheckout(true);
+  }
+
+  const submitOrderHandler = userData => {
+    fetch(DATABASE_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        user: userData,
+        orderedItems: cartCtx.items
+      })
+    })
   }
 
   const cartItems = cartCtx.items.map(item => (
@@ -61,7 +74,7 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && <Checkout onCancel={props.onClose} />}
+      {isCheckout && <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />}
       {!isCheckout && modalActions}
     </Modal>
   )
