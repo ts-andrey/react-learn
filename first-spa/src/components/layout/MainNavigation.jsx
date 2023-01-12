@@ -3,8 +3,8 @@ import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
   return (
-    <header className={classes.header}>;
-      <div className={classes.logo}></div>
+    <header className={classes.header}>
+      <div className={classes.logo}>Quotes App</div>
       <nav className={classes.nav}>
         <ul>
           <li>
