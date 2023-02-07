@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
@@ -10,14 +11,14 @@ const MainNavigation = () => {
           <li>
             <NavLink
               to={'/quotes'}
-              activeClassName={classes.active}>
+              className={(navdata) => navdata.isActive ? classes.active : ''}>
               All Quotes
             </NavLink>
           </li>
           <li>
             <NavLink
               to={'/new-quote'}
-              activeClassName={classes.active}>
+              className={(navdata) => navdata.isActive ? classes.active : ''}>
               Add a quote
             </NavLink>
           </li>

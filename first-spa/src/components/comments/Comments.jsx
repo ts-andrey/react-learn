@@ -14,7 +14,7 @@ const Comments = () => {
   const params = useParams();
   const { quoteId } = params;
 
-  const { sendRequest, status, data: loadedComments, error } = useHttp(getAllComments);
+  const { sendRequest, status, data: loadedComments } = useHttp(getAllComments);
 
   useEffect(() => {
     sendRequest(quoteId);
