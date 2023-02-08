@@ -1,0 +1,9 @@
+{
+  "posts": [
+    {
+      "author": "Some Tester",
+      "body": "Test Text",
+      "id": "post-1"
+    }
+  ]
+}
