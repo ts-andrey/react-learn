@@ -3,26 +3,19 @@ import classes from './PostList.module.css';
 import Post from './Post';
 import NewPost from './NewPost';
 import Modal from './Modal';
-import { useState } from 'react';
 
-function PostList() {
-  const [isModalVisible, setIsModalVisible] = useState(true);
-
-  function hideModalHandler() {
-    setIsModalVisible(false);
-  }
-
+function PostList({ isPosting, onStopPosting }) {
 
   let modalContent;
-  if (isModalVisible) {
+  if (isPosting) {
     modalContent = (
-      <Modal onClose={hideModalHandler}>
+      <Modal onClose={onStopPosting}>
         <NewPost />
       </Modal>
     )
   }
 
-  return ( 
+  return (
     <>
       {modalContent}
       <ul className={classes['post-list']}>
