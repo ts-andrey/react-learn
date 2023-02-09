@@ -9,6 +9,13 @@ function PostList({ isPosting, onStopPosting }) {
   const [posts, setPosts] = useState([]);
 
   function onCreatePost(newPost) {
+    fetch('http://localhost:8080/posts', {
+      method: 'POST',
+      body: JSON.stringify(newPost),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     setPosts(oldPosts => [newPost, ...oldPosts]);
   }
 
@@ -25,7 +32,7 @@ function PostList({ isPosting, onStopPosting }) {
     postContent =
       (
         <ul className={classes['post-list']}>
-          {posts.map((el, index) => <Post key={index} author={el.author} body={el.text} />)}
+          {posts.map((el, index) => <Post key={el.id || index} author={el.author} content={el.content} />)}
         </ul>
       )
   } else {

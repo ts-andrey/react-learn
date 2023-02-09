@@ -3,20 +3,20 @@ import { useState } from 'react';
 import classes from './NewPost.module.css';
 
 function NewPost({ onCancel, onSubmit }) {
-  const [postBody, setPostBody] = useState('');
   const [postAuthor, setPostAuthor] = useState('')
-
-  function changePostBodyHandler(event) {
-    setPostBody(event.target.value)
-  }
+  const [postContent, setPostContent] = useState('');
 
   function changePostAuthorHandler(event) {
     setPostAuthor(event.target.value)
   }
 
+  function changePostContentHandler(event) {
+    setPostContent(event.target.value)
+  }
+
   function createPost(event) {
     event.preventDefault();
-    onSubmit({ author: postAuthor, text: postBody })
+    onSubmit({ author: postAuthor, content: postContent })
     onCancel();
   }
 
@@ -27,8 +27,8 @@ function NewPost({ onCancel, onSubmit }) {
         <input type='text' id='name' required onChange={changePostAuthorHandler} />
       </p>
       <p>
-        <label htmlFor='body'>Text</label>
-        <textarea id='body' rows='3' required onChange={changePostBodyHandler} />
+        <label htmlFor='content'>Text</label>
+        <textarea id='content' rows='3' required onChange={changePostContentHandler} />
       </p>
       <div className={classes.actions}>
         <button type='button' onClick={onCancel}>Cancel</button>
