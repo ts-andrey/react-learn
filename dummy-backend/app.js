@@ -24,17 +24,14 @@ app.get('/posts', async (req, res) => {
 
 app.get('/posts/:id', async (req, res) => {
   const storedPosts = await getStoredPosts();
-  const post = storedPosts.find((post) => post.id === req.params.id);
+  const post = storedPosts.find(post => post.id === req.params.id);
   res.json({ post });
 });
 
 app.post('/posts', async (req, res) => {
   const existingPosts = await getStoredPosts();
   const postData = req.body;
-  const newPost = {
-    ...postData,
-    id: Math.random().toString(),
-  };
+  const newPost = { ...postData };
   const updatedPosts = [newPost, ...existingPosts];
   await storePosts(updatedPosts);
   res.status(201).json({ message: 'Stored new post.', post: newPost });

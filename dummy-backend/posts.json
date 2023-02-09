@@ -1,5 +1,7 @@
 {
   "posts": [
+    { "author": "Rout Logic Tester", "content": "Rout Logic Tester", "id": "0.8066883099870608" },
+    { "author": "AWS", "content": "AWS something", "id": "0.5399749259848292" },
     { "author": "Test Author 1", "content": "Test Author 1 Text", "id": "0.2734729636164124" },
     { "author": "Test Author", "content": "Test Author Text", "id": "0.21814387724974416" },
     { "author": "Some Tester", "content": "Test Text", "id": "post-1" }
