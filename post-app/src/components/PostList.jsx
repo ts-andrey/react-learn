@@ -9,7 +9,7 @@ function PostList() {
   if (posts.length > 0) {
     postsContent = (
       <ul className={classes['post-list']}>
-        {posts.map((el, index) => <Post key={el.id || index} author={el.author} content={el.content} />)}
+        {posts.map((post, index) => <Post key={post.id || index} id={post.id} author={post.author} content={post.content} />)}
       </ul>
     )
   }
